@@ -1,0 +1,36 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "KnowSphere web (5174)",
+			"type": "shell",
+			"command": "npm.cmd",
+			"args": [
+				"run",
+				"dev",
+				"--",
+				"--host",
+				"127.0.0.1",
+				"--port",
+				"5174",
+				"--strictPort"
+			],
+			"isBackground": true,
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "KnowSphere API (8002)",
+			"type": "shell",
+			"command": "powershell",
+			"args": [
+				"-NoProfile",
+				"-Command",
+				"$secure = Read-Host 'Gemini API key' -AsSecureString; $env:GEMINI_API_KEY = [System.Net.NetworkCredential]::new('', $secure).Password; python -m uvicorn backend.main:app --reload --host 127.0.0.1 --port 8002"
+			],
+			"isBackground": true,
+			"problemMatcher": [],
+			"group": "build"
+		}
+	]
+}
